@@ -1,4 +1,4 @@
-import { createServerClient } from '@supabase/ssr'
+/* import { createServerClient } from '@supabase/ssr'
 import { NextResponse } from 'next/server'
 
 export async function middleware(request) {
@@ -30,4 +30,4 @@ export async function middleware(request) {
 
 export const config = {
   matcher: ['/dashboard/:path*'], // Protège tout ce qui est dans dashboard
-}
+} */
