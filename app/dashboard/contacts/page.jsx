@@ -17,6 +17,7 @@ export default function ContactsPage() {
   }
 
   useEffect(() => {
+    document.title = "Piplo | Contacts";
     fetchContacts()
   }, [])
 

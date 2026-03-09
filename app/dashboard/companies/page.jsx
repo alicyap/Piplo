@@ -12,7 +12,10 @@ export default function CompaniesPage() {
     setCompanies(data || [])
   }
 
-  useEffect(() => { fetchCompanies() }, [])
+  useEffect(() => { 
+    document.title = "Piplo | Entreprises";
+    fetchCompanies();
+  }, [])
 
   const filtered = companies.filter(c => 
     c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||

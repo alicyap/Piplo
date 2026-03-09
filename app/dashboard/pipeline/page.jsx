@@ -16,7 +16,8 @@ export default function PipelinePage() {
   }
 
   useEffect(() => {
-    fetchLeads()
+    document.title = "Piplo | Pipeline de Vente";
+    fetchLeads();
   }, [])
 
   const updateLeadStep = async (id, currentStep) => {
