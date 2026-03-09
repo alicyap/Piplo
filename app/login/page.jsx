@@ -23,7 +23,11 @@ export default function Login() {
       return
     }
 
-    router.replace("/dashboard")
+    // Force le rafraîchissement des cookies avant de changer de page
+    router.refresh() 
+    setTimeout(() => {
+    router.push("/dashboard")
+    }, 100)
   }
 
   return (
