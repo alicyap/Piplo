@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🚀 Piplo CRM - Full SaaS Pipeline Management
 
-## Getting Started
+**Piplo** est une solution CRM moderne conçue pour simplifier la gestion commerciale, le suivi des contacts et l'automatisation des processus de vente. Développé avec une architecture Cloud native, le projet offre une expérience fluide de la prospection à la signature.
 
-First, run the development server:
+---
 
+## 🛠️ Stack Technique
+
+* **Frontend :** Next.js 15 (App Router), Tailwind CSS
+* **Backend & Database :** Supabase (PostgreSQL)
+* **Authentification :** Supabase Auth (Middleware sécurisé)
+* **Déploiement :** Vercel (CI/CD via GitHub)
+
+---
+
+## ✨ Fonctionnalités Clés
+
+* **Dashboard Intelligent :** Vue d'ensemble des KPI (Contacts, Tâches, Pipeline).
+* **Gestion CRUD Complète :**
+    * **Entreprises :** Centralisation des organisations partenaires.
+    * **Contacts :** Gestion détaillée des interlocuteurs.
+    * **Tâches :** Suivi des actions à mener pour chaque dossier.
+* **Pipeline de Vente :** Visualisation de l'avancement des opportunités par étapes.
+
+---
+
+## 🏗️ Architecture du Projet
+
+Le projet suit une architecture Serverless moderne pour garantir scalabilité et performance.
+
+
+### Schéma de la Base de Données
+La base de données PostgreSQL est structurée pour optimiser les relations entre les entités commerciales :
+
+* **Users :** Gérés par Supabase Auth.
+* **Companies :** Table parente contenant les informations morales.
+* **Contacts :** Liés via une clé étrangère à `companies`.
+* **Tasks/Leads :** Liés aux contacts pour un suivi historique.
+
+---
+
+## 📋 Installation et Configuration
+
+### 1. Cloner le projet
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone [https://github.com/alicyap/Piplo.git](https://github.com/alicyap/Piplo.git)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🌍 Déploiement
+Le projet utilise un pipeline CI/CD : chaque modification sur la branche main déclenche un build automatique sur Vercel.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Lien du projet : [https://piplo-ashy.vercel.app/](https://piplo-ashy.vercel.app/)

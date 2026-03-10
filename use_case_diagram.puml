@@ -1,0 +1,27 @@
+@startuml
+skinparam actorStyle awesome
+left to right direction
+
+actor "Utilisateur (Commercial)" as User
+package "Services Cloud" {
+    actor "Supabase (Auth/DB)" as Supa
+}
+
+package "Système Piplo CRM" {
+    usecase "S'authentifier" as UC1
+    usecase "Consulter le Dashboard" as UC2
+    usecase "Gérer les Entreprises & Contacts" as UC3
+    usecase "Piloter le Pipeline de vente" as UC4
+    usecase "Suivre les Tâches" as UC5
+
+User --> UC1
+User --> UC2
+User --> UC3
+User --> UC4
+User --> UC5
+
+UC1 -- Supa
+UC3 -- Supa
+UC4 -- Supa
+
+@enduml

@@ -1,0 +1,47 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+
+class Utilisateur {
+    + UUID id
+    + String email
+    + DateTime created_at
+}
+
+class Entreprise {
+    + UUID id
+    + String nom
+    + String secteur
+    + String site_web
+    + UUID owner_id
+}
+
+class Contact {
+    + UUID id
+    + String nom
+    + String prenom
+    + String email
+    + UUID company_id
+}
+
+class Pipeline {
+    + UUID id
+    + String etape
+    + Float valeur_estimee
+    + UUID contact_id
+}
+
+class Tache {
+    + UUID id
+    + String titre
+    + Date echeance
+    + Boolean termine
+    + UUID contact_id
+}
+
+Utilisateur "1" -- "0..*" Entreprise : "gère"
+Entreprise "1" -- "0..*" Contact : "possède"
+Contact "1" -- "0..1" Pipeline : "est lié à"
+Contact "1" -- "0..*" Tache : "concerne"
+
+@enduml
