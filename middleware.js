@@ -6,7 +6,6 @@ export async function middleware(request) {
     request: { headers: request.headers },
   })
 
-  // Initialisation Supabase afin de rafraîchir le token
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
@@ -24,15 +23,24 @@ export async function middleware(request) {
     }
   )
 
-  // Cette ligne rafraîchit la session de l'utilisateur silencieusement
-  await supabase.auth.getUser()
+  const { data: { user } } = await supabase.auth.getUser()
+
+  const url = new URL(request.url)
+  
+  // 1. SI l'utilisateur n'est pas connecté et essaie d'aller sur le Dashboard
+  if (!user && url.pathname.startsWith('/dashboard')) {
+    return NextResponse.redirect(new URL('/login', request.url))
+  }
+
+  // 2. SI l'utilisateur est déjà connecté et essaie d'aller sur Login/Register/Accueil
+  if (user && (url.pathname === '/login' || url.pathname === '/register' || url.pathname === '/')) {
+    return NextResponse.redirect(new URL('/dashboard', request.url))
+  }
 
   return response
 }
 
 export const config = {
-  matcher: [
-    // On applique le middleware à tout SAUF aux fichiers statiques et images
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
-  ],
+  // On ne fait tourner le middleware que sur les pages, pas sur les images/fichiers
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|.*\\..*).*)'],
 }
